@@ -21,14 +21,28 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       
+        myGameManager = GameManager.FindObjectOfType<GameManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.W) && transform.position.y < myGameManager.levelConstraintTop)
+        {
             transform.Translate(new Vector2(0, 1));
+        }
+        else if (Input.GetKeyDown(KeyCode.S) && transform.position.y < myGameManager.levelConstraintBottom)
+        {
+            transform.Translate(new Vector2(0, -1));
+        }
+        else if (Input.GetKeyDown(KeyCode.A) && transform.position.y < myGameManager.levelConstraintLeft)
+        {
+            transform.Translate(new Vector2(-1, 0));
+        }
+        else if (Input.GetKeyDown(KeyCode.D) && transform.position.y < myGameManager.levelConstraintRight)
+        {
+            transform.Translate(new Vector2(1, 0)); // I decided to use the "transform.translate" method as it meant that i was only dealing with vector 2 and i honestly thought it made the code look cleaner
+        }
     }
-
+    
 }
