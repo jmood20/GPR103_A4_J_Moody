@@ -27,7 +27,8 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
+        if (Input.GetKeyDown(KeyCode.W))
+            transform.Translate(new Vector2(0, 1));
     }
 
 }
