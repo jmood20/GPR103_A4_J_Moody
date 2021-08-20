@@ -27,11 +27,11 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W) && transform.position.y < myGameManager.levelConstraintTop)
+        if (Input.GetKeyDown(KeyCode.W) && transform.position.y < myGameManager.levelConstraintTop) //this code means that the player can move within a certain area, but the constraints in the game manager are implemented
         {
             transform.Translate(new Vector2(0, 1));
         }
-        else if (Input.GetKeyDown(KeyCode.S) && transform.position.y < myGameManager.levelConstraintBottom)
+        else if (Input.GetKeyDown(KeyCode.S) && transform.position.y < myGameManager.levelConstraintBottom)// the "else if" stops the player from being able to move diagonally and pressing multiple directional keys simutainously
         {
             transform.Translate(new Vector2(0, -1));
         }
