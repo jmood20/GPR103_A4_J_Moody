@@ -79,6 +79,7 @@ public class Player : MonoBehaviour
         playerIsAlive = false;
         playerCanMove = false;
         print("oooof!");
+        // for the road death. i thought it'd be interesting to actually not destroy the player sprite as i feel like keeping it goes well with the particle affect.
     }
         
         
