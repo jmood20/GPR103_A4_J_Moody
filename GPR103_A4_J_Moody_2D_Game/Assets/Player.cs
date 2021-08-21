@@ -61,9 +61,12 @@ public class Player : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.transform.GetComponent<Vehicle>() != null) //this is the collision code for the "highway" section of the game. the vehicle component was chosen as the component as it is the common demoninator amongst all the cars.
+        if (playerIsAlive == true)
         {
-            PlayerDeath();
+            if (collision.transform.GetComponent<Vehicle>() != null) //this is the collision code for the "highway" section of the game. the vehicle component was chosen as the component as it is the common demoninator amongst all the cars.
+            {
+                PlayerDeath();
+            }
         }
     }
 
