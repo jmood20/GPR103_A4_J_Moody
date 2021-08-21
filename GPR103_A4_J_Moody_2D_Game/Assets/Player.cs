@@ -27,19 +27,19 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W) && transform.position.y < myGameManager.levelConstraintTop) //this code means that the player can move within a certain area, but the constraints in the game manager are implemented
+        if (Input.GetKeyDown(KeyCode.UpArrow) && transform.position.y < myGameManager.levelConstraintTop) //this code means that the player can move within a certain area, but the constraints in the game manager are implemented
         {
             transform.Translate(new Vector2(0, 1));
         }
-        else if (Input.GetKeyDown(KeyCode.S) && transform.position.y < myGameManager.levelConstraintBottom)// the "else if" stops the player from being able to move diagonally and pressing multiple directional keys simutainously
+        else if (Input.GetKeyDown(KeyCode.DownArrow) && transform.position.y > myGameManager.levelConstraintBottom)// the "else if" stops the player from being able to move diagonally and pressing multiple directional keys simutainously
         {
             transform.Translate(new Vector2(0, -1));
         }
-        else if (Input.GetKeyDown(KeyCode.A) && transform.position.y < myGameManager.levelConstraintLeft)
+        else if (Input.GetKeyDown(KeyCode.LeftArrow) && transform.position.x > myGameManager.levelConstraintLeft)
         {
             transform.Translate(new Vector2(-1, 0));
         }
-        else if (Input.GetKeyDown(KeyCode.D) && transform.position.y < myGameManager.levelConstraintRight)
+        else if (Input.GetKeyDown(KeyCode.RightArrow) && transform.position.x < myGameManager.levelConstraintRight)
         {
             transform.Translate(new Vector2(1, 0)); // I decided to use the "transform.translate" method as it meant that i was only dealing with vector 2 and i honestly thought it made the code look cleaner
         }
