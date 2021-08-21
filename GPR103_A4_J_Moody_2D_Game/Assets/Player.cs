@@ -21,7 +21,9 @@ public class Player : MonoBehaviour
     public AudioClip jumpAudio;    
     public AudioClip ScoreAudio;
     public AudioClip hurtAudio;
+    //death effects
     
+    public GameObject PlayerSplat;
 
 
 
@@ -73,6 +75,7 @@ public class Player : MonoBehaviour
     void PlayerDeath()// this is a function of code that would be used to contain and initialise the code for the player to die, kind of like a tupperware container. 
     {
         GetComponent<AudioSource>().PlayOneShot(hurtAudio);
+        Instantiate(PlayerSplat, transform.position, Quaternion.identity);
         playerIsAlive = false;
         playerCanMove = false;
         print("oooof!");
