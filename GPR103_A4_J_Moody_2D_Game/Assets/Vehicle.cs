@@ -18,13 +18,18 @@ public class Vehicle : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-      
+        transform.position = startingPosition;
     }
 
     // Update is called once per frame
     void Update()
     {
         transform.Translate(Vector2.left * Time.deltaTime * speed * moveDirection);
+
+        if ((transform.position.x * moveDirection) < (endPosition.x * moveDirection))
+        {
+            transform.position = startingPosition;
+        }
     }
 
 }
