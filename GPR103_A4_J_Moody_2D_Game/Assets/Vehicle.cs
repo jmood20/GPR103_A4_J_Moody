@@ -24,7 +24,7 @@ public class Vehicle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        transform.Translate(Vector2.left * Time.deltaTime * speed * moveDirection);
     }
 
 }
