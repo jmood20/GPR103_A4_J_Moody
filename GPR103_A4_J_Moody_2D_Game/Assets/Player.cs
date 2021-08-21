@@ -57,5 +57,9 @@ public class Player : MonoBehaviour
             GetComponent<AudioSource>().PlayOneShot(jumpAudio);
         }
     }
-    
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        print("test hit");
+    }
+
 }
