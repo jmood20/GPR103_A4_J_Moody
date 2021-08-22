@@ -16,6 +16,8 @@ public class Player : MonoBehaviour
     public bool playerIsAlive = true; //Is the player currently alive?
     public bool playerCanMove = true; //Can the player currently move?
 
+    public bool PlayerIsOnLogs = false;
+    public bool PlayerIsInWater = false;
     // this is the public section thingy-mah-bob where the audio for the game is help
 
     public AudioClip jumpAudio;    
@@ -24,7 +26,7 @@ public class Player : MonoBehaviour
     //death effects
     
     public GameObject PlayerSplat;
-
+    public GameObject PlayerSplash;
 
 
     private GameManager myGameManager; //A reference to the GameManager in the scene.
@@ -61,23 +63,42 @@ public class Player : MonoBehaviour
             }
         }
     }
+
+
+     void LateUpdate()
+    { if (playerIsAlive == true)
+        {
+
+            if (PlayerIsInWater == true && PlayerIsOnLogs == false)
+            {
+                PlayerDrown();
+            }
+        }
+    }
+
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (playerIsAlive == true)
         {
             if (collision.transform.GetComponent<Vehicle>() != null) //this is the collision code for the "highway" section of the game. the vehicle component was chosen as the component as it is the common demoninator amongst all the cars.
             {
-                PlayerDeath();
+               PlayerDeath();
             }
             else if (collision.transform.GetComponent<Logs>() != null)
             {
                transform.SetParent(collision.transform);
+                PlayerIsOnLogs = true;
+            }
+            else if (collision.transform.tag == "DeathWater")
+            {
+                PlayerIsInWater = true;
+              
             }
         }
     }
 
 
- void OnTriggerExit2D(Collider2D collision)// this is to make sure the frog is no longer stuck under a parent once it leaves the collision of the logs
+    void OnTriggerExit2D(Collider2D collision)// this is to make sure the frog is no longer stuck under a parent once it leaves the collision of the logs
 
     {
         if (playerIsAlive == true)
@@ -85,25 +106,37 @@ public class Player : MonoBehaviour
             if (collision.transform.GetComponent<Logs>() != null)
             {
                 transform.SetParent(null);
+                PlayerIsOnLogs = false;
+            }
+            else if (collision.transform.tag == "DeathWater")
+            {
+                PlayerIsInWater = false;
             }
         }
+
     }
 
 
 
+        void PlayerDeath()// this is a function of code that would be used to contain and initialise the code for the player to die, kind of like a tupperware container. 
+        {
+            GetComponent<AudioSource>().PlayOneShot(hurtAudio);
+            Instantiate(PlayerSplat, transform.position, Quaternion.identity);
+            playerIsAlive = false;
+            playerCanMove = false;
+            print("oooof!");
+            // for the road death. i thought it'd be interesting to actually not destroy the player sprite as i feel like keeping it goes well with the particle affect.tli
+        }
 
+        void PlayerDrown()
+        {
+            GetComponent<SpriteRenderer>().enabled = false;
+            GetComponent<AudioSource>().PlayOneShot(hurtAudio);
+            Instantiate(PlayerSplash, transform.position, Quaternion.identity);
+            playerIsAlive = false;
+            playerCanMove = false;
+            print("sploosh!");
+        }
 
-    void PlayerDeath()// this is a function of code that would be used to contain and initialise the code for the player to die, kind of like a tupperware container. 
-    {
-        GetComponent<AudioSource>().PlayOneShot(hurtAudio);
-        Instantiate(PlayerSplat, transform.position, Quaternion.identity);
-        playerIsAlive = false;
-        playerCanMove = false;
-        print("oooof!");
-        // for the road death. i thought it'd be interesting to actually not destroy the player sprite as i feel like keeping it goes well with the particle affect.tli
-    }
-        
-        
-        
-        
+       
  }
