@@ -128,7 +128,7 @@ public class Player : MonoBehaviour
             // for the road death. i thought it'd be interesting to actually not destroy the player sprite as i feel like keeping it goes well with the particle affect.tli
         }
 
-        void PlayerDrown()
+        void PlayerDrown()// i decided to create a secondary kill player code block for the river part of the section because.... why not... hehe
         {
             GetComponent<SpriteRenderer>().enabled = false;
             GetComponent<AudioSource>().PlayOneShot(hurtAudio);
