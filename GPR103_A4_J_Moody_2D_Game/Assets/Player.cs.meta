@@ -3,7 +3,12 @@ guid: 2338d10ecd33e424cb94a839a5b093c0
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - jumpAudio: {fileID: 8300000, guid: 308a89cae05d55a4797893e108285cda, type: 3}
+  - ScoreAudio: {fileID: 8300000, guid: 9e9f4ddc9dd8d3f4e85b20d42e0fb590, type: 3}
+  - hurtAudio: {fileID: 8300000, guid: ba821c54f684f304b9e4049ffb3d6c54, type: 3}
+  - PlayerSplat: {fileID: 2238600358249305918, guid: 6041fa8d809133b49bc17fc150300ea4,
+      type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
