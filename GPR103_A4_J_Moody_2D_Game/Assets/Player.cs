@@ -69,8 +69,29 @@ public class Player : MonoBehaviour
             {
                 PlayerDeath();
             }
+            else if (collision.transform.GetComponent<Logs>() != null)
+            {
+               transform.SetParent(collision.transform);
+            }
         }
     }
+
+
+ void OnTriggerExit2D(Collider2D collision)// this is to make sure the frog is no longer stuck under a parent once it leaves the collision of the logs
+
+    {
+        if (playerIsAlive == true)
+        {
+            if (collision.transform.GetComponent<Logs>() != null)
+            {
+                transform.SetParent(null);
+            }
+        }
+    }
+
+
+
+
 
     void PlayerDeath()// this is a function of code that would be used to contain and initialise the code for the player to die, kind of like a tupperware container. 
     {
