@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEditor.ShortcutManagement;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 /// <summary>
@@ -63,6 +64,27 @@ public class Player : MonoBehaviour
                 GetComponent<AudioSource>().PlayOneShot(jumpAudio); //I decided to keep the audio the same pitch as i felt like it was cuter, i was also starting to get pressed for time
             }
         }
+        else if (playerIsAlive == false)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+
+                SceneManager.LoadScene("FroggerExampleScene");
+            
+            
+            
+            }
+            else if (Input.GetKeyDown(KeyCode.Escape)) 
+            {
+                Application.Quit();// this is to quit the application
+            
+            }
+
+
+
+
+        }
+     
     }
 
 
@@ -102,6 +124,8 @@ public class Player : MonoBehaviour
             else if (collision.transform.tag == "Victory")
             {
                 GetComponent<AudioSource>().PlayOneShot(ScoreAudio);
+                SceneManager.LoadScene("FroggerExampleScene");// this is to reload the level once the player has reached the goal
+
 
             }
         }
@@ -135,6 +159,7 @@ public class Player : MonoBehaviour
             playerIsAlive = false;
             playerCanMove = false;
             print("oooof!");
+           
             // for the road death. i thought it'd be interesting to actually not destroy the player sprite as i feel like keeping it goes well with the particle affect.tli
         }
 
