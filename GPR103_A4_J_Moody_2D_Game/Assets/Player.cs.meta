@@ -9,6 +9,8 @@ MonoImporter:
   - hurtAudio: {fileID: 8300000, guid: ba821c54f684f304b9e4049ffb3d6c54, type: 3}
   - PlayerSplat: {fileID: 2238600358249305918, guid: 6041fa8d809133b49bc17fc150300ea4,
       type: 3}
+  - PlayerSplash: {fileID: 8790552425956355835, guid: 42494e50cca8822449b2cd132339fc5f,
+      type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

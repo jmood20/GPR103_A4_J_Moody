@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor.ShortcutManagement;
 using UnityEngine;
 
+
 /// <summary>
 /// This script must be used as the core Player script for managing the player character in the game.
 /// </summary>
@@ -82,17 +83,26 @@ public class Player : MonoBehaviour
         {
             if (collision.transform.GetComponent<Vehicle>() != null) //this is the collision code for the "highway" section of the game. the vehicle component was chosen as the component as it is the common demoninator amongst all the cars.
             {
-               PlayerDeath();
+                PlayerDeath();
             }
             else if (collision.transform.GetComponent<Logs>() != null)
             {
-               transform.SetParent(collision.transform);
+                transform.SetParent(collision.transform);
                 PlayerIsOnLogs = true;
             }
             else if (collision.transform.tag == "DeathWater")
             {
                 PlayerIsInWater = true;
-              
+
+            }
+            else if (collision.transform.tag == "Snappy")
+            {
+                Playersnap();
+            }
+            else if (collision.transform.tag == "Victory")
+            {
+                GetComponent<AudioSource>().PlayOneShot(ScoreAudio);
+
             }
         }
     }
@@ -130,7 +140,7 @@ public class Player : MonoBehaviour
 
         void PlayerDrown()// i decided to create a secondary kill player code block for the river part of the section because.... why not... hehe
         {
-            GetComponent<SpriteRenderer>().enabled = false;
+           
             GetComponent<AudioSource>().PlayOneShot(hurtAudio);
             Instantiate(PlayerSplash, transform.position, Quaternion.identity);
             playerIsAlive = false;
@@ -138,5 +148,14 @@ public class Player : MonoBehaviour
             print("sploosh!");
         }
 
+     void Playersnap()// this is for when the player hits snappy
+    {
+        GetComponent<SpriteRenderer>().enabled = false;
+        GetComponent<AudioSource>().PlayOneShot(hurtAudio);
+        Instantiate(PlayerSplat, transform.position, Quaternion.identity);
+        playerIsAlive = false;
+        playerCanMove = false;
+        print("oooof!");
+    }
        
  }
