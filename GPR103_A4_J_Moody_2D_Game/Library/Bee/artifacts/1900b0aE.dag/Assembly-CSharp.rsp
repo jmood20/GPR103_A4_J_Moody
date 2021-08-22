@@ -333,6 +333,7 @@
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEngine.UI.ref.dll"
 "Assets/GameManager.cs"
 "Assets/Player.cs"
+"Assets/snappy.cs"
 "Assets/sprites/Logs.cs"
 "Assets/Vehicle.cs"
 -langversion:8.0
